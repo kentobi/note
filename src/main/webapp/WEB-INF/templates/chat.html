@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Chat</title>
+	<link rel="stylesheet" type="text/css" href="resources/css/base.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	var lastNote;
+  	$(function() {
+		$( ".note" ).draggable();
+		lastNote = $(".note");
+	    enableCloseLink();
+ 	});
+
+  	function createNote() {
+  		var newNote = lastNote.clone();
+  		newNote.css("top", "+=20");
+  		newNote.css("left", "+=20");
+  		$( "#start" ).append(newNote);
+  		newNote.draggable();
+  		lastNote = newNote;
+  		enableCloseLink();
+  	}
+  	
+  	function enableCloseLink() {
+  		$(".closeBtn").click(function(event) {
+  		    event.preventDefault();
+  		        $(this).parent('.note').remove();
+  		});
+  	}
+  	</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="btn" onclick="createNote()">create note</div>
+	<div id="start">start elements: 
+		<div class="note">
+			<strong>Notiz</strong><a href="#" class="closeBtn" style="float: right">X</a>
+			<br />
+			<textarea rows="8" cols="26">schreib was</textarea>
+		</div>
+	</div>
+</body>
+</html>
